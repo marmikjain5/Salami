@@ -1,10 +1,1299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#eef3fb" />
-    <title>ANVESH // Digital Fraud Intelligence</title>
-  </head>
-  <body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANVESH · Digital Fraud Intelligence & Forensic Platform</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ANVESH monogram: an A and V interlock to form the platform mark. -->
+  <svg class="logo-definitions" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="anvesh-monogram" viewBox="0 0 64 64">
+        <path d="M7 45c2.5 8 9 11 14 5 3.5-4.5 1.5-14 2.5-24 1-9 3-16 6-18 4 6 6 18 9 31M23 31c4-3 10-2 14 3M39 12c1 12 3 27 10 38 5-7 8-20 10-33" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ========================================== -->
+  <!-- TOP HEADER & PILL NAVIGATION               -->
+  <!-- ========================================== -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo-badge">
+        <svg class="anvesh-mark anvesh-mark-header" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+        <span>ANVESH</span>
+      </div>
+    </div>
+
+    <!-- Centered Nav Pills for All Wireframe Screens -->
+    <nav class="header-nav-pills">
+      <button class="nav-pill-btn active" data-tab="tab-telemetry">Telemetry Dashboard</button>
+      <button class="nav-pill-btn" data-tab="tab-heat-list">Threat Heat List</button>
+      <button class="nav-pill-btn" data-tab="tab-investigate">Investigate (Submit)</button>
+      <button class="nav-pill-btn" data-tab="tab-report">Investigation Report</button>
+      <button class="nav-pill-btn" data-tab="tab-explainer">AI Explainer (Voice)</button>
+      <button class="nav-pill-btn" data-tab="tab-connected">Connected Intelligence</button>
+      <button class="nav-pill-btn" data-tab="tab-cases-profile">Police Case Files</button>
+      <button class="nav-pill-btn" data-tab="tab-extension">Browser Extension</button>
+      <button class="nav-pill-btn" data-tab="tab-pwa-widget">PWA Share Widget</button>
+    </nav>
+
+    <div class="header-right-actions">
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN APPLICATION CONTAINER                 -->
+  <!-- ========================================== -->
+  <main class="app-container">
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 1: TELEMETRY DASHBOARD (Technical Master Screen)    -->
+    <!-- ========================================================= -->
+    <div class="tab-pane active" id="tab-telemetry">
+      
+      <!-- Top Action Strip Bar -->
+      <div class="action-strip-bar">
+        <div class="action-strip-title">
+          <span>/ Live Threat Telemetry & Police Forensic Dashboard</span>
+        </div>
+        <div class="action-strip-btns">
+          <button class="btn btn-outline" id="telemetry-pdf-btn">Executive PDF Report</button>
+          <button class="btn btn-primary" id="telemetry-run-btn" onclick="document.querySelector('[data-tab=\'tab-investigate\']').click();">Run Threat Analyzer</button>
+        </div>
+      </div>
+
+
+      <!-- 4 Metric Cards Row -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Total Artifacts Processed</div>
+          <div class="metric-value blue" id="telemetry-stat-artifacts">1,486</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Active Mule Identifiers</div>
+          <div class="metric-value" id="telemetry-stat-mules">5 Active</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">System Threat Risk Index</div>
+          <div class="metric-value red" id="telemetry-stat-risk">88/100 (HIGH RISK)</div>
+        </div>
+      </div>
+
+      <!-- 2-Column Section: Extracted Mules Feed + Probability Table -->
+      <div class="two-col-grid">
+        
+        <!-- Left: Recent Threat Detections & Extracted Mules -->
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <h3>Recent Threat Detections & Extracted Mules</h3>
+            <span class="badge badge-low">LIVE SYNDICATE FEED</span>
+          </div>
+
+          <table class="table-clean">
+            <thead>
+              <tr>
+                <th>Identifier</th>
+                <th>Threat Category</th>
+                <th>Enforcement Action</th>
+              </tr>
+            </thead>
+            <tbody id="telemetry-heat-tbody">
+              <tr>
+                <td><code>support.quickcash@upi</code></td>
+                <td>Fake Loan Extortion</td>
+                <td><span class="badge badge-high">NPCI Freeze</span></td>
+              </tr>
+              <tr>
+                <td><code>+91 90000 42187</code></td>
+                <td>SMS Phishing Ring</td>
+                <td><span class="badge badge-medium">TAFCOP Alert</span></td>
+              </tr>
+              <tr>
+                <td><code>quickcash-verify.in</code></td>
+                <td>Typosquatting KYC</td>
+                <td><span class="badge badge-high">DNS Takedown</span></td>
+              </tr>
+              <tr>
+                <td><code>FastFunds_v2.apk</code></td>
+                <td>Predatory Permissions</td>
+                <td><span class="badge badge-high">Malware Flag</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right: Reported case category mix -->
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <h3>Reported Cases by Category in past 15 days</h3>
+            <span class="badge badge-medium">PAST 15 DAYS</span>
+          </div>
+          <div class="case-category-chart-wrap">
+            <div class="case-category-pie" id="telemetry-category-chart" role="img" aria-label="Reported cases by category in past 15 days">
+              <div class="case-category-pie-center"><strong id="telemetry-category-total">0</strong><span>CASES</span></div>
+            </div>
+            <div class="case-category-legend" id="telemetry-category-legend" aria-live="polite"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Currently open investigations -->
+      <section class="open-cases-section" aria-labelledby="open-cases-heading">
+        <div class="open-cases-heading">
+          <div>
+            <div class="open-cases-kicker">CASE MANAGEMENT / ACTIVE FILES</div>
+            <h2 id="open-cases-heading">Currently Open Cases</h2>
+          </div>
+          <span class="open-cases-count" id="telemetry-open-cases-count">0 OPEN</span>
+        </div>
+        <div class="open-cases-list" id="telemetry-open-cases-list" aria-live="polite"></div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 1B: TRENDING THREAT HEAT LIST                      -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-heat-list">
+      <div class="action-strip-bar">
+        <div class="action-strip-title"><span>/ Trending Scam Domains &amp; Numbers</span></div>
+        <div class="action-strip-btns"><span class="badge badge-medium">SOURCE-TRACEABLE</span></div>
+      </div>
+
+      <div class="heat-list-intro card-panel">
+        <div class="editorial-subhead">THREAT HEAT LIST</div>
+        <h2 class="editorial-hero-title">Trending indicators with <em>source context.</em></h2>
+        <p class="editorial-hero-desc">Ranked from reported case evidence. Each domain, phone number, and payment identifier is linked to the case sources that surfaced it.</p>
+      </div>
+
+      <div class="heat-list-grid">
+        <section class="card-panel heat-list-panel">
+          <div class="card-panel-header"><h3>Trending scam domains</h3><span class="badge badge-high">DOMAINS</span></div>
+          <div id="heat-list-domains" class="heat-list-table-wrap"></div>
+        </section>
+        <section class="card-panel heat-list-panel">
+          <div class="card-panel-header"><h3>Trending phone numbers</h3><span class="badge badge-medium">NUMBERS</span></div>
+          <div id="heat-list-phones" class="heat-list-table-wrap"></div>
+        </section>
+      </div>
+
+      <section class="card-panel heat-list-panel heat-list-wide">
+        <div class="card-panel-header"><h3>Other trending identifiers</h3><span class="badge badge-low">UPI &amp; APP SOURCES</span></div>
+        <div id="heat-list-other" class="heat-list-table-wrap"></div>
+      </section>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 2: INVESTIGATE - SUBMIT (PDF Page 1)               -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-investigate">
+      <div class="editorial-screen-wrap">
+        <div class="paper-device-frame">
+          
+          <div class="editorial-header-row">
+            <div class="anvesh-brand-logo">
+              <svg class="anvesh-mark anvesh-mark-editorial" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+              <div>
+                <div class="brand-name-text">ANVESH</div>
+                <div class="brand-sub-tag">DIGITAL FRAUD INTELLIGENCE</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paper-device-two-col">
+            
+            <!-- Left Submission Column -->
+            <div>
+              <h2 class="editorial-hero-title">Something suspicious? <em>Let's uncover it.</em></h2>
+              <p class="editorial-hero-desc">
+                Investigate messages, links, websites and apps before you trust them.
+              </p>
+
+              <!-- Exhibit A Input Card -->
+              <div class="exhibit-input-card">
+                <div class="exhibit-card-head">
+                  <span id="exhibit-card-title">EXHIBIT A - MESSAGE</span>
+                  <div class="actions-row">
+                    <button class="action-link" id="btn-paste-sample">Paste Sample</button>
+                    <button class="action-link" id="btn-clear-exhibit">Clear</button>
+                  </div>
+                </div>
+
+                <textarea class="exhibit-textarea" id="exhibit-input-text" placeholder="Paste a suspicious message, link or payment request..."></textarea>
+                
+                <div id="exhibit-hint-text" style="font-size:0.75rem; color:#8C968E; margin-top:0.4rem;">
+                  Include the sender's number and any link if you can.
+                </div>
+
+                <div class="exhibit-card-foot">
+                  <button class="action-link" id="btn-try-sample" style="text-decoration:underline;">Try a sample</button>
+                  <button class="btn-anvesh-green" id="btn-anvesh-investigate">Investigate</button>
+                </div>
+              </div>
+
+              <!-- Choose a Method Grid -->
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                <span style="font-weight:700; font-size:0.88rem; color:#142019;">Investigate anything</span>
+                <span style="font-size:0.7rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase;">CHOOSE A METHOD</span>
+              </div>
+
+              <div class="choose-method-grid">
+                <div class="method-card selected" id="method-card-01" data-method="message" style="cursor:pointer;">
+                  <div class="method-num">01</div>
+                  <div class="method-title">Message</div>
+                  <div class="method-desc">SMS, WhatsApp or email text</div>
+                  <div class="method-status" id="method-status-01">SELECTED</div>
+                </div>
+                <div class="method-card" id="method-card-02" data-method="url" style="cursor:pointer;">
+                  <div class="method-num">02</div>
+                  <div class="method-title">Link</div>
+                  <div class="method-desc">Paste a suspicious URL</div>
+                  <div class="method-status" id="method-status-02" style="color:#767E77;">SELECT</div>
+                </div>
+                <div class="method-card" id="method-card-03" data-method="website" style="cursor:pointer;">
+                  <div class="method-num">03</div>
+                  <div class="method-title">Website</div>
+                  <div class="method-desc">Investigate website &amp; DOM identity</div>
+                  <div class="method-status" id="method-status-03" style="color:#767E77;">SELECT</div>
+                </div>
+                <div class="method-card" id="method-card-04" data-method="apk" style="cursor:pointer;">
+                  <div class="method-num">04</div>
+                  <div class="method-title">Android App</div>
+                  <div class="method-desc">Inspect APK permissions &amp; strings</div>
+                  <div class="method-status" id="method-status-04" style="color:#767E77;">SELECT</div>
+                </div>
+              </div>
+
+              <!-- Before You Trust It (Accordion) -->
+              <div style="border-top:1px solid #E5E0D8; padding-top:1.25rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+                  <span style="font-weight:700; font-size:0.85rem; color:#142019;">Before you trust it</span>
+                  <span style="font-size:0.7rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase;">COMMON RED FLAGS</span>
+                </div>
+                <div style="font-size:0.82rem; color:#4A534D; line-height:2;">
+                  <div><span style="color:#B91C1C; font-family:var(--font-mono);">F-01</span> <strong>Urgent KYC update</strong> - Demands immediate action</div>
+                  <div><span style="color:#B91C1C; font-family:var(--font-mono);">F-02</span> <strong>Guaranteed returns</strong> - 100% daily profit or double money</div>
+                  <div><span style="color:#B91C1C; font-family:var(--font-mono);">F-03</span> <strong>Loan approval in minutes</strong> - Without credit/CIBIL verification</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Case in Progress Checklist (PDF Page 1 Right) -->
+            <div>
+              <div class="compiling-progress-card">
+                <div class="case-progress-stamp" id="case-progress-stamp">CASE IN PROGRESS</div>
+                <h4 id="case-progress-heading">Compiling the case file...</h4>
+                
+                <ul class="compiling-checklist" id="compiling-checklist">
+                  <li id="check-step-1">
+                    <span class="check-box done">[x]</span>
+                    <span>Reading your submission</span>
+                  </li>
+                  <li id="check-step-2">
+                    <span class="check-box done">[x]</span>
+                    <span>Extracting phone numbers, links and UPI IDs</span>
+                  </li>
+                  <li id="check-step-3">
+                    <span class="check-box done">[x]</span>
+                    <span>Checking wording and domain patterns</span>
+                  </li>
+                  <li id="check-step-4">
+                    <span class="check-box pending">[ ]</span>
+                    <span>Matching against reported cases</span>
+                  </li>
+                  <li id="check-step-5">
+                    <span class="check-box pending">[ ]</span>
+                    <span>Numbering the evidence</span>
+                  </li>
+                </ul>
+
+                <div style="margin-top:2rem; padding-top:1rem; border-top:1px dashed #C9C1B2; font-size:0.72rem; color:#8C968E; font-family:var(--font-mono); text-transform:uppercase;" id="compiling-engine-status">
+                  LIVE STATIC FORENSICS ENGINE - READY
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 3: INVESTIGATION REPORT (PDF Page 2)               -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-report">
+      <div class="editorial-screen-wrap">
+        <div class="paper-device-frame">
+          
+          <div class="editorial-header-row">
+            <div class="anvesh-brand-logo">
+              <svg class="anvesh-mark anvesh-mark-editorial" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+              <div>
+                <div class="brand-name-text">ANVESH</div>
+                <div class="brand-sub-tag">DIGITAL FRAUD INTELLIGENCE</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metadata row -->
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:#767E77; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+            <span>CASE ID: <strong id="report-case-id">ANV-2026-01482</strong></span>
+            <span>FILED: <strong id="report-filed-date">24 Nov 2026 - 14:30 IST</strong></span>
+            <span>STATUS: <strong id="report-status">Verified High Risk</strong></span>
+            <span>SUBMISSION: <strong id="report-sub-type">Instant-loan SMS</strong></span>
+          </div>
+
+          <!-- Case Title -->
+          <div class="editorial-subhead">INVESTIGATION REPORT</div>
+          <h2 class="editorial-hero-title" id="report-hero-title">The loan that was <em>never offered.</em></h2>
+
+          <!-- Risk Score Banner -->
+          <div class="score-summary-bar">
+            <div class="score-badge-box">
+              <span class="badge badge-high" id="report-risk-badge" style="align-self:flex-start;">HIGH RISK</span>
+              <div class="score-breakdown-segments" id="report-score-segments">
+                <span class="score-segment-chip">E01 +22</span>
+                <span class="score-segment-chip">E02 +24</span>
+                <span class="score-segment-chip">E03 +20</span>
+                <span class="score-segment-chip">E04 +26</span>
+              </div>
+              <span id="report-score-desc" style="font-size:0.72rem; color:#767E77; margin-top:0.25rem;">
+                Four independent signals point the same way. Each block is one finding.
+              </span>
+            </div>
+            <div style="text-align:right;">
+              <span class="score-large-number" id="report-risk-score">92</span>
+              <span style="font-size:1.5rem; color:#767E77; font-family:Georgia, serif;">/ 100</span>
+            </div>
+          </div>
+
+          <!-- Exhibit A Highlighted Text -->
+          <div class="exhibit-input-card" style="background:#FFFDF7; border-color:#E8DEC8;">
+            <div id="report-exhibit-label" style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; margin-bottom:0.5rem;">
+              EXHIBIT A - MESSAGE AS SUBMITTED
+            </div>
+            <p id="report-exhibit-text" style="font-size:0.95rem; line-height:1.6; color:#1F2421;">
+              Your loan is approved. <mark style="background:#FDE68A; padding:0 3px;">₹50,000 ready for disbursement</mark>. Complete your KYC <mark style="background:#FDE68A; padding:0 3px;">immediately</mark>. Click the link below <mark style="background:#FDE68A; padding:0 3px;">or your loan will expire</mark>. <mark style="background:#FDE68A; padding:0 3px;">quickcash-verify.in/kyc</mark>
+            </p>
+          </div>
+
+          <!-- Why this is suspicious (Findings E01-E04) -->
+          <div style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+              <span style="font-weight:700; font-size:0.95rem; color:#142019;">Why this is suspicious</span>
+              <span id="report-findings-count" style="font-size:0.75rem; font-family:var(--font-mono); color:#767E77;">4 FINDINGS</span>
+            </div>
+
+            <div id="report-findings-container">
+              <!-- E01 -->
+              <div class="finding-item-box">
+                <div class="finding-head">
+                  <div>
+                    <span class="finding-tag-num">E01</span>
+                    <span class="finding-title-bold">URGENCY MANIPULATION</span>
+                  </div>
+                  <span class="badge badge-high">HIGH</span>
+                </div>
+                <div class="finding-body-block">
+                  Creates pressure through an artificial deadline.
+                  <span class="sub-label">WHAT WE SAW</span>
+                  "Immediately" and "or your loan will expire" set a countdown without giving date or reference.
+                  <span class="sub-label">WHY IT MATTERS</span>
+                  Pressure shortens the time you have to think or check. Genuine lenders state timelines in writing.
+                </div>
+              </div>
+
+              <!-- E02 -->
+              <div class="finding-item-box">
+                <div class="finding-head">
+                  <div>
+                    <span class="finding-tag-num">E02</span>
+                    <span class="finding-title-bold">FINANCIAL IMPERSONATION</span>
+                  </div>
+                  <span class="badge badge-high">HIGH</span>
+                </div>
+                <div class="finding-body-block">
+                  Claims loan approval without verified context.
+                  <span class="sub-label">WHAT WE SAW</span>
+                  An approval and an amount (₹50,000) appear with no lender name, application number, or earlier request.
+                  <span class="sub-label">WHY IT MATTERS</span>
+                  Real approvals follow an application you made. Unsolicited approval is the hook for fee demands.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extracted Indicators Table -->
+          <div style="margin-bottom:1.5rem;">
+            <div id="report-extracted-count" style="font-weight:700; font-size:0.95rem; color:#142019; margin-bottom:0.75rem;">
+              Extracted indicators (3 items)
+            </div>
+            <table class="table-clean" style="background:#FFF; border:1px solid #DDD7CC; border-radius:8px;">
+              <tbody id="report-extracted-tbody">
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700; width:120px;">DOMAIN</td>
+                  <td><code>quickcash-verify.in</code></td>
+                  <td style="color:#767E77; font-size:0.8rem;">Hyphenated "verify" lookalike</td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">PHONE</td>
+                  <td><code>+91 90000 42187</code></td>
+                  <td style="color:#767E77; font-size:0.8rem;">Contact number in the message</td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">UPI</td>
+                  <td><code>support.quickcash@upi</code></td>
+                  <td style="color:#767E77; font-size:0.8rem;">Suspicious payment identifier</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- What to do now (Recommended Checklist) -->
+          <div style="border-top:1px solid #E5E0D8; padding-top:1.25rem;">
+            <div style="font-weight:700; font-size:0.95rem; color:#142019; margin-bottom:0.75rem;">
+              What to do now - RECOMMENDED
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.85rem; color:#334155;">
+              <div>[ ] <strong>Do not click the link:</strong> It can open a fake KYC form or start an unverified app download.</div>
+              <div>[ ] <strong>Do not share OTPs:</strong> No bank or lender needs your OTP to approve a loan.</div>
+              <div>[ ] <strong>Verify through official channels:</strong> Call the number on your lender's official website.</div>
+              <div>[ ] <strong>Report the message:</strong> Keep the evidence, then report to authorities.</div>
+            </div>
+          </div>
+
+          <!-- Interactive Actions Bar -->
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid #E5E0D8;">
+            <button class="btn btn-primary" id="btn-report-download" style="background:#1E4034; border-color:#1E4034;">
+              Download PDF Report (SHA-256)
+            </button>
+            <button class="btn btn-outline" id="btn-report-voice" onclick="document.querySelector('[data-tab=\'tab-explainer\']').click();">
+              Listen in AI Voice Explainer
+            </button>
+            <button class="btn btn-outline" id="btn-report-connected" onclick="document.querySelector('[data-tab=\'tab-connected\']').click();">
+              Trace Syndicate Links
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 4: AI EXPLAINER (VOICE & CHAT) (PDF Page 3)        -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-explainer">
+      <div class="editorial-screen-wrap">
+        <div class="paper-device-frame" style="max-width:760px;">
+          
+          <div class="editorial-header-row">
+            <div class="anvesh-brand-logo">
+              <svg class="anvesh-mark anvesh-mark-editorial" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+              <div>
+                <div class="brand-name-text">ANVESH</div>
+                <div class="brand-sub-tag">DIGITAL FRAUD INTELLIGENCE</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="editorial-subhead">PLAIN-LANGUAGE GUIDE</div>
+          <h2 class="editorial-hero-title">Understand the <em>threat.</em></h2>
+          <p class="editorial-hero-desc">
+            We translate investigation findings into clear, practical guidance in your language.
+          </p>
+
+          <!-- Language Selector -->
+          <div style="display:flex; gap:0.5rem; margin-bottom:1.5rem;">
+            <button class="btn btn-outline active" style="background:#2563EB; color:#FFF; border-color:#2563EB;" id="lang-btn-en">English</button>
+            <button class="btn btn-outline" id="lang-btn-hi">हिंदी</button>
+            <button class="btn btn-outline" id="lang-btn-kn">ಕನ್ನಡ</button>
+            <span id="explainer-case-subtitle" style="margin-left:auto; font-size:0.75rem; color:#767E77; align-self:center; font-family:var(--font-mono);">
+              ANSWERS TIED TO ANV-2026-01482
+            </span>
+          </div>
+
+          <!-- Simulated Voice Card -->
+          <div class="voice-control-card">
+            <button class="voice-mic-button" id="voice-mic-btn" type="button" aria-label="Play explanation aloud" aria-pressed="false" title="Play explanation aloud">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="9" y="3" width="6" height="12" rx="3"></rect>
+                <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"></path>
+              </svg>
+            </button>
+            <div class="voice-label" id="voice-label">Tap the mic to hear the explanation</div>
+            <div class="voice-helper-text">Listen to ANVESH explain the findings below.</div>
+
+            <button class="btn btn-outline voice-play-button" id="voice-play-pill" type="button" aria-label="Hear the explanation" aria-pressed="false">
+              <svg class="voice-play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m8 5 11 7-11 7z"></path>
+              </svg>
+              <svg class="voice-pause-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7 5h4v14H7zm6 0h4v14h-4z"></path>
+              </svg>
+              <span id="voice-play-text">Hear the explanation</span>
+            </button>
+          </div>
+
+          <!-- Conversational Stream -->
+          <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem;" id="chat-conversation-stream">
+            
+            <!-- ANVESH Explains -->
+            <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:8px; padding:1.25rem;">
+              <div style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; margin-bottom:0.4rem;">
+                ANVESH - EXPLAINS
+              </div>
+              <p style="font-size:0.9rem; line-height:1.5; color:#1F2421; margin-bottom:0.75rem;" id="explainer-text-main">
+                This message looks dangerous because it creates urgency, promises a loan, and sends you to an unfamiliar verification website. These are common tactics used in predatory loan scams.
+              </p>
+              <div style="display:flex; gap:0.4rem;" id="explainer-finding-tags">
+                <span class="badge badge-low" style="background:#F1F5F9; color:#475569; border-color:#CBD5E1;">E01</span>
+                <span class="badge badge-low" style="background:#F1F5F9; color:#475569; border-color:#CBD5E1;">E02</span>
+                <span class="badge badge-low" style="background:#F1F5F9; color:#475569; border-color:#CBD5E1;">E03</span>
+              </div>
+            </div>
+
+            <!-- Citizen Query -->
+            <div style="background:#F4F0E8; border:1px solid #DDD7CC; border-radius:8px; padding:1.25rem; align-self:flex-end; max-width:85%;">
+              <div style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; margin-bottom:0.4rem;">
+                YOU ASKED
+              </div>
+              <p style="font-size:0.9rem; color:#1F2421;" id="explainer-user-query">
+                I already clicked the link. What should I do?
+              </p>
+            </div>
+
+            <!-- ANVESH Follow-up -->
+            <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:8px; padding:1.25rem;">
+              <div style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; margin-bottom:0.4rem;">
+                ANVESH - EXPLAINS
+              </div>
+              <p style="font-size:0.9rem; line-height:1.5; color:#1F2421;" id="explainer-advice-text">
+                Don't panic. Close the website immediately. If you entered your bank details, contact your bank right away to block transactions. If you shared an OTP, call the national cyber helpline at <strong>1930</strong>.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Prompt Suggestions -->
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;" id="explainer-prompt-chips">
+            <button class="chip-btn">I shared an OTP</button>
+            <button class="chip-btn">I installed an app from the link</button>
+            <button class="chip-btn">How do I report this officially?</button>
+            <button class="chip-btn">Could the sender be a real lender?</button>
+          </div>
+
+          <!-- Input bar -->
+          <div style="display:flex; gap:0.5rem;">
+            <input type="text" id="ask-case-input" class="form-control" placeholder="Ask about this case..." style="background:#FFF;">
+            <button class="btn-anvesh-green" id="btn-ask-case" style="padding:0.75rem 1.25rem;">Ask</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 5: CONNECTED INTELLIGENCE & GRAPH (PDF Page 4)     -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-connected">
+      <div class="editorial-screen-wrap">
+        <div class="paper-device-frame">
+          
+          <div class="editorial-header-row">
+            <div class="anvesh-brand-logo">
+              <svg class="anvesh-mark anvesh-mark-editorial" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+              <div>
+                <div class="brand-name-text">ANVESH</div>
+                <div class="brand-sub-tag">DIGITAL FRAUD INTELLIGENCE</div>
+              </div>
+            </div>
+          </div>
+
+          <section id="connected-case-list-view" class="connected-case-list-view">
+            <div class="editorial-subhead">IDENTIFIED CASES</div>
+            <h2 class="editorial-hero-title">Cases with <em>cross-connections.</em></h2>
+            <p class="editorial-hero-desc">Choose a case to inspect its shared identifiers, campaign fingerprint, and evidence timeline.</p>
+            <div id="connected-case-list" class="connected-case-list"></div>
+          </section>
+
+          <section id="connected-detail-view" class="connected-detail-view" hidden>
+            <button type="button" class="btn btn-outline connected-back-button" id="connected-back-button">← Back to identified cases</button>
+
+          <div class="editorial-subhead">CONNECTED INTELLIGENCE</div>
+          <h2 class="editorial-hero-title">One scam rarely <em>stands alone.</em></h2>
+          <p class="editorial-hero-desc">
+            Follow each report in order to see new identifiers appear and match evidence from earlier cases.
+          </p>
+
+          <!-- Evidence Board Graph Canvas -->
+          <div class="syndicate-graph-board">
+            <div id="connected-board-label" style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; margin-bottom:1rem;">
+              EVIDENCE BOARD - 3 CASES - 5 IDENTIFIERS
+            </div>
+
+            <!-- Visual Node Layout -->
+            <div id="syndicate-graph-board-nodes" style="display:flex; flex-direction:column; gap:1.75rem; align-items:center; position:relative;">
+              
+              <!-- Top Row: Domains -->
+              <div style="display:flex; gap:3rem; flex-wrap:wrap; justify-content:center;">
+                <div class="node-chip-badge" id="node-domain1">
+                  <span>[WEB]</span>
+                  <span>quickcash-verify.in</span>
+                </div>
+                <div style="border-top:1px dashed #A3ACA5; width:80px; align-self:center;"></div>
+                <div class="node-chip-badge" id="node-domain2">
+                  <span>[WEB]</span>
+                  <span>quick-loan-support.in</span>
+                </div>
+              </div>
+
+              <!-- Middle Row: Center Phone Hub -->
+              <div style="display:flex; justify-content:space-between; width:100%; max-width:650px; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <div class="node-chip-badge center-hub" id="node-case1">
+                  <span>[CASE]</span>
+                  <span>ANV-01482</span>
+                </div>
+
+                <div class="node-chip-badge center-hub" style="background:#FDE68A; border-color:#D97706; padding:0.6rem 1rem;" id="node-phone-hub">
+                  <span>[PHONE]</span>
+                  <span><strong>+91 90000 42187</strong> (Shared Hub)</span>
+                </div>
+
+                <div class="node-chip-badge center-hub" id="node-case2">
+                  <span>[CASE]</span>
+                  <span>ANV-01396</span>
+                </div>
+              </div>
+
+              <!-- Bottom Row: UPI and APK -->
+              <div style="display:flex; gap:3rem; flex-wrap:wrap; justify-content:center;">
+                <div class="node-chip-badge" id="node-upi">
+                  <span>[UPI]</span>
+                  <span>support.quickcash@upi</span>
+                </div>
+                <div style="border-top:1px dashed #A3ACA5; width:80px; align-self:center;"></div>
+                <div class="node-chip-badge" id="node-apk">
+                  <span>[APK]</span>
+                  <span>FastFunds.apk (ANV-01277)</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Legend -->
+            <div style="display:flex; justify-content:center; gap:1.5rem; margin-top:2rem; font-size:0.75rem; color:#767E77; font-family:var(--font-mono); border-top:1px solid #E5E0D8; padding-top:1rem; flex-wrap:wrap;">
+              <span>[ ] Case</span>
+              <span>( ) Phone</span>
+              <span>{ } App</span>
+              <span>&lt; &gt; Domain</span>
+              <span>@ UPI ID</span>
+              <span>- Confirmed match</span>
+            </div>
+          </div>
+
+          <!-- Campaign Fingerprint Card (PDF Page 4 Lower) -->
+          <div class="campaign-fingerprint-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <span class="editorial-subhead" style="margin-bottom:0;">CAMPAIGN FINGERPRINT</span>
+              <span class="badge badge-low">CROSS-CASE MATCH</span>
+            </div>
+
+            <div class="barcode-strip-visual"></div>
+
+            <table class="table-clean" style="border:1px solid #DDD7CC; background:#FFF; border-radius:6px;">
+              <tbody id="connected-fingerprint-tbody">
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700; width:160px;">FINGERPRINT ID</td>
+                  <td id="fp-id"><code>FP-LOAN-7C2A</code></td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">SCAM TYPE</td>
+                  <td id="fp-type">Instant loan fraud</td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">TACTIC</td>
+                  <td id="fp-tactic">Urgency + impersonation</td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">TARGET</td>
+                  <td id="fp-target">Loan seekers</td>
+                </tr>
+                <tr>
+                  <td style="font-family:var(--font-mono); font-weight:700;">PATTERN</td>
+                  <td id="fp-pattern">Fake KYC + payment demand</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Newly Observed Patterns (Last 7 Days) -->
+          <div style="margin-top:1.5rem; border-top:1px solid #E5E0D8; padding-top:1.25rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem;">
+              <span style="font-weight:700; font-size:0.95rem; color:#142019;">Newly observed patterns</span>
+              <span style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77;">LAST 7 DAYS</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.82rem; color:#4A534D;" id="connected-patterns-list">
+              <div><strong>P-01: Similar loan-approval messages detected</strong> - 14 reports in 7 days share near-identical wording.</div>
+              <div><strong>P-02: Repeated verification-themed domains</strong> - 5 domains use the same "keyword-verify" structure.</div>
+              <div><strong>P-03: New payment identifiers associated with reported cases</strong> - 2 new UPI IDs now appear in existing case files.</div>
+            </div>
+          </div>
+
+          <div class="connected-timeline-section">
+            <div class="connected-timeline-heading">
+              <span class="editorial-subhead">CASE TIMELINE</span>
+              <span class="connected-timeline-hint">Select an event to open its report</span>
+            </div>
+            <div id="connected-case-timeline" class="connected-case-timeline"></div>
+          </div>
+
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 6: POLICE CASE FILES                               -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-cases-profile">
+      <div class="editorial-screen-wrap">
+        <div class="paper-device-frame">
+          
+          <div class="editorial-header-row">
+            <div class="anvesh-brand-logo">
+              <svg class="anvesh-mark anvesh-mark-editorial" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+              <div>
+                <div class="brand-name-text">ANVESH</div>
+                <div class="brand-sub-tag">DIGITAL FRAUD INTELLIGENCE</div>
+              </div>
+            </div>
+            <div class="police-console-badge"><span></span> POLICE CASE CONSOLE</div>
+          </div>
+
+          <div class="paper-device-two-col">
+            
+            <!-- Left: Case Files History -->
+            <div>
+              <div class="editorial-subhead">POLICE INVESTIGATION DESK</div>
+              <h2 class="editorial-hero-title">Case queue for <em>official review.</em></h2>
+              <p class="editorial-hero-desc">
+                Review reported incidents, trace linked identifiers, and prepare evidence for enforcement action.
+              </p>
+
+              <!-- Stats bar -->
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.5rem;">
+                <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:6px; padding:0.75rem; text-align:center;">
+                  <div style="font-size:1.6rem; font-weight:700; color:#142019;" id="profile-stat-total-cases">6</div>
+                  <div style="font-size:0.68rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase;">ACTIVE CASES</div>
+                </div>
+                <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:6px; padding:0.75rem; text-align:center;">
+                  <div style="font-size:1.6rem; font-weight:700; color:#B91C1C;" id="profile-stat-high-risk">5</div>
+                  <div style="font-size:0.68rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase;">HIGH RISK</div>
+                </div>
+                <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:6px; padding:0.75rem; text-align:center;">
+                  <div style="font-size:1.6rem; font-weight:700; color:#142019;" id="profile-stat-reported">2</div>
+                  <div style="font-size:0.68rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase;">ESCALATED</div>
+                </div>
+              </div>
+
+              <!-- Search Bar -->
+              <div style="margin-bottom:1rem;">
+                <input type="text" id="profile-cases-search" class="form-control" placeholder="Search case ID, phone, UPI, domain, or keyword..." style="background:#FFF; font-size:0.82rem;">
+              </div>
+
+              <!-- Case Cards List Container -->
+              <div style="display:flex; flex-direction:column; gap:0.85rem;" id="profile-cases-list">
+                <!-- Dynamically rendered -->
+              </div>
+
+            </div>
+
+            <!-- Right: Officer workspace -->
+            <div>
+              <div class="editorial-subhead">OFFICER WORKSPACE</div>
+              <h3 class="editorial-hero-title" style="font-size:1.6rem;">Review, assign, <em>act.</em></h3>
+
+              <!-- Profile Box -->
+              <div style="background:#FFF; border:1px solid #DDD7CC; border-radius:8px; padding:1rem; display:flex; align-items:center; gap:0.75rem; margin-bottom:1.25rem;">
+                <div style="width:40px; height:40px; background:#1E4034; color:#FFF; font-weight:800; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.9rem;">
+                  AO
+                </div>
+                <div>
+                  <div style="font-weight:700; font-size:0.9rem; color:#142019;">Investigations unit</div>
+                  <div style="font-size:0.72rem; color:#767E77;">Internal case review · Evidence console</div>
+                </div>
+              </div>
+
+              <div class="police-ops-status">
+                <div><span>QUEUE MODE</span><strong>ACTIVE REVIEW</strong></div>
+                <div><span>EVIDENCE SYNC</span><strong class="is-live">LOCAL RECORDS READY</strong></div>
+                <div><span>LAST REFRESH</span><strong>JUST NOW</strong></div>
+              </div>
+
+              <!-- Preferences -->
+              <div style="margin-bottom:1.5rem;">
+                <div style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase; margin-bottom:0.5rem;">
+                  CASE HANDLING
+                </div>
+                <div style="display:flex; gap:0.35rem; margin-bottom:1rem;">
+                  <button class="btn btn-sm btn-outline active" style="background:#1E4034; color:#FFF;" id="pref-lang-en">Review queue</button>
+                  <button class="btn btn-sm btn-outline" id="pref-lang-hi">Evidence</button>
+                  <button class="btn btn-sm btn-outline" id="pref-lang-kn">Escalation</button>
+                </div>
+
+                <div style="font-size:0.72rem; font-family:var(--font-mono); color:#767E77; text-transform:uppercase; margin-bottom:0.5rem;">
+                  REPORT OUTPUT
+                </div>
+                <div style="display:flex; gap:0.35rem; margin-bottom:1.25rem;">
+                  <button class="btn btn-sm btn-outline active" style="background:#1E4034; color:#FFF;" id="pref-text-std">Case brief</button>
+                  <button class="btn btn-sm btn-outline" id="pref-text-lg">PDF dossier</button>
+                  <button class="btn btn-sm btn-outline" id="pref-text-xl">Evidence log</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 7: CITIZEN BROWSER EXTENSION (Innovation)          -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-extension">
+      <div style="display:flex; flex-direction:column; align-items:center; padding:1.5rem 0;">
+        
+        <div style="text-align:center; max-width:600px; margin-bottom:1.5rem;">
+          <h2 class="editorial-hero-title">Citizen Innovation: <em>Browser Extension</em></h2>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Proactive real-time defense. Warns citizens before opening fraudulent banking look-alikes or Ponzi portals.
+          </p>
+        </div>
+
+        <!-- Interactive URL Test Bar -->
+        <div style="display:flex; gap:0.5rem; max-width:440px; width:100%; margin-bottom:1.5rem;">
+          <input type="text" id="ext-url-input" class="form-control" value="https://sbi-yono-kyc-verify-portal.xyz/login.php" style="background:#FFF; font-size:0.82rem;" placeholder="Enter any URL to test live in extension...">
+          <button id="ext-btn-test" class="btn btn-primary" style="background:#1E4034; border-color:#1E4034; white-space:nowrap;">Test URL</button>
+        </div>
+
+        <div class="extension-scenario-picker" aria-label="Extension scenarios">
+          <span>Try a scenario:</span>
+          <button type="button" class="btn btn-sm btn-outline" id="ext-sample-risky">Risky website</button>
+          <button type="button" class="btn btn-sm btn-outline" id="ext-sample-safe">Safe website</button>
+        </div>
+
+        <!-- Extension Popup Mockup Frame -->
+        <div class="browser-extension-frame">
+          
+          <div class="extension-chrome-bar">
+            <span style="font-weight:800; font-size:0.75rem; color:#1E4034; border:1px solid #1E4034; border-radius:3px; padding:1px 4px;">GUARD</span>
+            <div class="extension-url-pill">
+              <span id="ext-display-url">https://quickcash-verify.in/kyc</span>
+              <span id="ext-status-tag" style="color:#DC2626; font-weight:700;">PHISHING</span>
+            </div>
+          </div>
+
+          <div class="extension-body-content">
+            
+            <div class="extension-threat-card">
+              <span class="badge badge-high" id="ext-threat-badge">DECEPTIVE SITE DETECTED</span>
+              <div class="extension-threat-score" id="ext-threat-score">95 / 100</div>
+              <div style="font-size:0.85rem; font-weight:700; color:#991B1B; margin-bottom:0.25rem;" id="ext-threat-title">
+                Fake Banking / QuickCash Portal
+              </div>
+              <div style="font-size:0.75rem; color:#7F1D1D;" id="ext-threat-desc">
+                This site attempts to harvest your banking credentials and PAN details.
+              </div>
+            </div>
+
+            <!-- Risk Indicators -->
+            <div id="ext-threat-indicators" style="font-size:0.75rem; color:#334155; margin-bottom:1rem; line-height:1.7;">
+              <div>- <strong>Unregistered TLD:</strong> Uses disposable domain structure</div>
+              <div>- <strong>Brand Impersonation:</strong> Clones official KYC verification</div>
+              <div>- <strong>Zero HTTPS Trust:</strong> Self-signed certificate</div>
+            </div>
+
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-sm btn-primary" style="background:#DC2626; flex:1; justify-content:center;" onclick="alert('Safe navigation: Redirected away from suspicious destination.');">Leave Site</button>
+              <button class="btn btn-sm btn-outline" style="flex:1; justify-content:center;" onclick="document.querySelector('[data-tab=\'tab-investigate\']').click();">File Report</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCREEN 8: CITIZEN PWA SHARE WIDGET (Innovation)           -->
+    <!-- ========================================================= -->
+    <div class="tab-pane" id="tab-pwa-widget">
+      <div style="display:flex; flex-direction:column; align-items:center; padding:1.5rem 0;">
+        
+        <div style="text-align:center; max-width:650px; margin-bottom:1.5rem;">
+          <h2 class="editorial-hero-title">Citizen Innovation: <em>iPhone Share Tray & Instant Triage</em></h2>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            Zero-friction citizen protection. Tap "Share" inside Messages to route suspicious links directly to ANVESH Fraud Guard, with one-tap 1930 National Cyber Helpline calling.
+          </p>
+        </div>
+
+        <div class="ios-device-container">
+          
+          <!-- SCREEN 1: 1-Tap Forwarding via Native Share Tray -->
+          <div class="ios-screen-column">
+            <div class="ios-step-badge">STEP 1 · FORWARD VIA SHARE TRAY</div>
+            
+            <div class="ios-phone-chassis">
+              
+              <!-- Dynamic Island -->
+              <div class="ios-dynamic-island">
+                <div class="ios-island-sensor"></div>
+                <div class="ios-island-camera"></div>
+              </div>
+
+              <!-- Status Bar -->
+              <div class="ios-status-bar">
+                <span class="ios-status-time">9:41</span>
+                <div class="ios-status-icons">
+                  <span>5G</span>
+                  <span style="display:inline-flex; align-items:flex-end; gap:1.5px; height:10px;">
+                    <span style="width:2px; height:3px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:5px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:7px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:9px; background:#000; border-radius:0.5px;"></span>
+                  </span>
+                  <span style="display:inline-block; width:18px; height:9px; border:1px solid #000; border-radius:2.5px; padding:1px; position:relative;">
+                    <span style="display:block; width:80%; height:100%; background:#000; border-radius:1px;"></span>
+                    <span style="position:absolute; right:-2.5px; top:2.5px; width:1.5px; height:3px; background:#000; border-radius:0 1px 1px 0;"></span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- iOS iMessage Header -->
+              <div class="ios-imessage-header">
+                <div class="ios-header-back">
+                  <span style="font-size:1.1rem; line-height:1;">&lsaquo;</span>
+                  <span>Messages</span>
+                </div>
+                <div class="ios-header-contact">
+                  <div class="ios-avatar-circle">+91</div>
+                  <div class="ios-contact-name">+91 90000 42187 <span>&rsaquo;</span></div>
+                </div>
+                <div class="ios-header-facetime">Call</div>
+              </div>
+
+              <!-- iMessage Conversation Canvas -->
+              <div class="ios-message-canvas">
+                <div class="ios-date-badge">Today 9:41 AM</div>
+                
+                <div class="ios-incoming-bubble">
+                  <p id="pwa-sim-msg-text" style="margin:0 0 6px 0;">Your loan is approved. ₹50,000 ready for disbursement. Complete your KYC immediately. quickcash-verify.in/kyc</p>
+                  
+                  <!-- Rich Link Preview Card -->
+                  <div class="ios-bubble-link-card">
+                    <div class="ios-link-card-thumb">
+                      <span>WEB</span>
+                      <span>quickcash-verify.in</span>
+                    </div>
+                    <div class="ios-link-card-body">
+                      <div class="ios-link-card-title">QuickCash Loan Disbursement Portal</div>
+                      <div class="ios-link-card-sub">Instant KYC verification link</div>
+                    </div>
+                  </div>
+
+                  <!-- Quick Action Bar -->
+                  <div class="ios-bubble-action-bar">
+                    <button id="sim-share-btn-2" class="ios-bubble-share-btn">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                      </svg>
+                      <span>Share...</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- iMessage Input Strip -->
+              <div class="ios-message-input-strip">
+                <div class="ios-input-plus">+</div>
+                <div class="ios-input-bubble-fake">
+                  <span>iMessage</span>
+                  <span style="font-size:0.75rem; color:#007AFF;">AUDIO</span>
+                </div>
+              </div>
+
+              <!-- Native iOS Share Tray (Apple UIActivityViewController) -->
+              <div id="sim-share-sheet-2" class="ios-share-tray-overlay">
+                <div class="ios-share-tray-sheet">
+                  
+                  <!-- Grabber handle -->
+                  <div class="ios-tray-grabber"></div>
+
+                  <!-- Item Preview Row -->
+                  <div class="ios-tray-preview-row">
+                    <div class="ios-tray-preview-icon">LINK</div>
+                    <div class="ios-tray-preview-text">
+                      <div class="ios-tray-preview-title">Loan Approved - ₹50,000 Disbursement</div>
+                      <div class="ios-tray-preview-url">quickcash-verify.in/kyc</div>
+                    </div>
+                    <button id="sim-tray-close" class="ios-tray-close-btn">&times;</button>
+                  </div>
+
+                  <!-- Row 1: People / AirDrop -->
+                  <div class="ios-tray-people-row">
+                    <div class="ios-person-item">
+                      <div class="ios-person-avatar" style="background:#E1E7F0; color:#007AFF;">
+                        <span style="font-size:0.75rem; font-weight:700;">AIR</span>
+                        <div class="ios-person-badge" style="background:#007AFF;">&#8226;</div>
+                      </div>
+                      <span class="ios-person-name">AirDrop</span>
+                    </div>
+                    <div class="ios-person-item">
+                      <div class="ios-person-avatar">
+                        <span>M</span>
+                        <div class="ios-person-badge" style="background:#25D366;">WA</div>
+                      </div>
+                      <span class="ios-person-name">Mom</span>
+                    </div>
+                    <div class="ios-person-item">
+                      <div class="ios-person-avatar">
+                        <span>R</span>
+                        <div class="ios-person-badge" style="background:#007AFF;">MSG</div>
+                      </div>
+                      <span class="ios-person-name">Rahul</span>
+                    </div>
+                    <div class="ios-person-item">
+                      <div class="ios-person-avatar">
+                        <span>P</span>
+                        <div class="ios-person-badge" style="background:#EA4335;">MAIL</div>
+                      </div>
+                      <span class="ios-person-name">Priya</span>
+                    </div>
+                  </div>
+
+                  <!-- Row 2: Apps (iOS Squircles) -->
+                  <div class="ios-tray-apps-row">
+                    
+                    <!-- ANVESH Target App -->
+                    <div class="ios-app-item" id="sim-target-app-2">
+                      <div class="ios-app-squircle anvesh-target">
+                        <svg class="anvesh-mark anvesh-mark-pwa-app" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+                      </div>
+                      <span class="ios-app-name" style="font-weight:700; color:#059669;">ANVESH</span>
+                      <span class="ios-app-tag">SECURITY</span>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="ios-app-item">
+                      <div class="ios-app-squircle" style="background:linear-gradient(135deg, #34C759, #28CD41);">
+                        <span>MSG</span>
+                      </div>
+                      <span class="ios-app-name">Messages</span>
+                    </div>
+
+                    <!-- Mail -->
+                    <div class="ios-app-item">
+                      <div class="ios-app-squircle" style="background:linear-gradient(135deg, #007AFF, #0051A8);">
+                        <span>MAIL</span>
+                      </div>
+                      <span class="ios-app-name">Mail</span>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="ios-app-item">
+                      <div class="ios-app-squircle" style="background:linear-gradient(135deg, #25D366, #128C7E);">
+                        <span>WA</span>
+                      </div>
+                      <span class="ios-app-name">WhatsApp</span>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="ios-app-item">
+                      <div class="ios-app-squircle" style="background:linear-gradient(135deg, #FFCC00, #E6B800);">
+                        <span>NOTE</span>
+                      </div>
+                      <span class="ios-app-name">Notes</span>
+                    </div>
+
+                  </div>
+
+                  <!-- Row 3: Actions List -->
+                  <div class="ios-action-grouped-card">
+                    <div class="ios-action-row highlighted" id="sim-action-scan-anvesh">
+                      <div style="display:flex; align-items:center; gap:8px;">
+                        <svg class="anvesh-mark anvesh-mark-pwa-action" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+                        <span>Scan with ANVESH Fraud Guard</span>
+                      </div>
+                      <span style="font-size:0.75rem; color:#8E8E93;">&rsaquo;</span>
+                    </div>
+                    <div class="ios-action-row" onclick="alert('Link copied to clipboard.');">
+                      <span>Copy Link</span>
+                      <span style="font-size:0.72rem; color:#8E8E93;">Copy</span>
+                    </div>
+                    <div class="ios-action-row" onclick="alert('Added to Reading List.');">
+                      <span>Add to Reading List</span>
+                      <span style="font-size:0.72rem; color:#8E8E93;">Save</span>
+                    </div>
+                  </div>
+
+                  <!-- Home Indicator -->
+                  <div class="ios-home-indicator"></div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SCREEN 2: Result & 1930 Emergency Helpline Screen -->
+          <div class="ios-screen-column">
+            <div class="ios-step-badge alert-step">STEP 2 · INSTANT RESULT & 1930 HELPLINE</div>
+            
+            <div class="ios-phone-chassis" style="background:#F2F2F7;">
+              
+              <!-- Dynamic Island -->
+              <div class="ios-dynamic-island">
+                <div class="ios-island-sensor"></div>
+                <div class="ios-island-camera"></div>
+              </div>
+
+              <!-- Status Bar -->
+              <div class="ios-status-bar" style="background:#F2F2F7;">
+                <span class="ios-status-time">9:41</span>
+                <div class="ios-status-icons">
+                  <span>5G</span>
+                  <span style="display:inline-flex; align-items:flex-end; gap:1.5px; height:10px;">
+                    <span style="width:2px; height:3px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:5px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:7px; background:#000; border-radius:0.5px;"></span>
+                    <span style="width:2px; height:9px; background:#000; border-radius:0.5px;"></span>
+                  </span>
+                  <span style="display:inline-block; width:18px; height:9px; border:1px solid #000; border-radius:2.5px; padding:1px; position:relative;">
+                    <span style="display:block; width:80%; height:100%; background:#000; border-radius:1px;"></span>
+                    <span style="position:absolute; right:-2.5px; top:2.5px; width:1.5px; height:3px; background:#000; border-radius:0 1px 1px 0;"></span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Widget Header Bar -->
+              <div style="height:48px; padding:0 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:0.5px solid #D1D1D6; background:rgba(255,255,255,0.95); backdrop-filter:blur(20px);">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:6px; background:#ECFDF5; border:1px solid #10B981;">
+                    <svg class="anvesh-mark anvesh-mark-pwa-header" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+                  </div>
+                  <span style="font-weight:700; font-size:0.88rem; color:#111827;">ANVESH <span style="font-weight:400; color:#6B7280; font-size:0.8rem;">Fraud Guard</span></span>
+                </div>
+                <span class="badge badge-high" style="font-size:0.65rem; padding:2px 8px;">LIVE TRIAGE</span>
+              </div>
+
+              <!-- Scrollable Result Body -->
+              <div style="flex:1; padding:14px 14px 10px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;">
+                
+                <!-- Threat Verdict Card -->
+                <div style="background:#FFFFFF; border-radius:16px; padding:14px; box-shadow:0 1px 4px rgba(0,0,0,0.06); border:1px solid #E5E7EB;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <span class="ios-threat-score-pill" id="pwa-screen2-score" style="margin:0;">CRITICAL · 92 / 100</span>
+                    <span class="badge badge-high">HIGH RISK</span>
+                  </div>
+                  <h4 id="pwa-screen2-title" style="font-size:1.05rem; font-weight:800; color:#111827; margin:0 0 4px 0; line-height:1.25;">
+                    Predatory Loan Extortion
+                  </h4>
+                  <p id="pwa-screen2-desc" style="font-size:0.75rem; color:#4B5563; margin:0; line-height:1.4;">
+                    High confidence match with active instant-loan phishing syndicate. Uses fake KYC urgency to harvest banking credentials.
+                  </p>
+                </div>
+
+                <!-- Extracted Identifiers (Mule Feed) -->
+                <div style="background:#FFFFFF; border-radius:16px; padding:12px 14px; box-shadow:0 1px 4px rgba(0,0,0,0.06); border:1px solid #E5E7EB;">
+                  <div style="font-size:0.68rem; font-family:var(--font-mono); font-weight:700; color:#6B7280; text-transform:uppercase; margin-bottom:6px;">
+                    EXTRACTED FORENSIC IDENTIFIERS
+                  </div>
+                  <div style="font-size:0.72rem; color:#374151; display:flex; flex-direction:column; gap:5px; font-family:var(--font-mono);">
+                    <div style="display:flex; justify-content:space-between;">
+                      <span style="color:#6B7280;">DOMAIN:</span>
+                      <strong style="color:#DC2626;">quickcash-verify.in</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                      <span style="color:#6B7280;">MULE PHONE:</span>
+                      <strong>+91 90000 42187</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                      <span style="color:#6B7280;">MULE UPI:</span>
+                      <strong>support.quickcash@upi</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Safety Recommendation Box -->
+                <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:14px; padding:10px 12px; font-size:0.72rem; color:#92400E; line-height:1.4;">
+                  <strong>Action Required:</strong> Do not click verification links or share OTPs. Real banks never disburse loans without CIBIL verification.
+                </div>
+
+                <!-- DIRECT CALL 1930 HELPLINE SECTION -->
+                <div style="background:#FEF2F2; border:1.5px solid #FCA5A5; border-radius:16px; padding:12px; text-align:center; box-shadow:0 2px 8px rgba(220,38,38,0.15);">
+                  <div style="font-size:0.68rem; font-family:var(--font-mono); font-weight:700; color:#B91C1C; text-transform:uppercase; margin-bottom:3px;">
+                    IF SUSPICIOUS ACTIVITY OCCURRED
+                  </div>
+                  <p style="font-size:0.72rem; color:#7F1D1D; line-height:1.35; margin:0 0 10px 0;">
+                    Call within the Golden Hour to freeze destination mule accounts & UPI wallets.
+                  </p>
+                  
+                  <!-- Direct Phone Call Button -->
+                  <a href="tel:1930" class="btn btn-primary" style="background:#DC2626; border-color:#DC2626; color:#FFF; font-weight:800; font-size:0.88rem; width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:11px 16px; border-radius:12px; text-decoration:none; box-shadow:0 4px 14px rgba(220,38,38,0.35);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>Call 1930 National Helpline</span>
+                  </a>
+
+                  <div style="font-size:0.62rem; color:#991B1B; margin-top:6px;">
+                    Toll-Free 24x7 Government of India Cybercrime Portal
+                  </div>
+                </div>
+
+                <!-- Secondary Desk Actions -->
+                <div style="display:flex; gap:8px; margin-top:2px;">
+                  <button class="btn btn-sm btn-outline" style="flex:1; justify-content:center; font-size:0.72rem; padding:8px;" onclick="document.querySelector('[data-tab=\'tab-report\']').click();">
+                    Inspect in Forensic Desk
+                  </button>
+                  <button class="btn btn-sm btn-outline" style="flex:1; justify-content:center; font-size:0.72rem; padding:8px;" onclick="alert('Evidence SHA-256 Hash copied to clipboard.');">
+                    Copy Evidence
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Home Indicator -->
+              <div class="ios-home-indicator" style="margin:6px auto 10px;"></div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Application Scripts -->
+  <script src="js/analyzer.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/app.js"></script>
+</body>
 </html>
