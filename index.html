@@ -58,7 +58,12 @@
       <!-- Top Action Strip Bar -->
       <div class="action-strip-bar">
         <div class="action-strip-title">
-          <span>/ Live Threat Telemetry & Police Forensic Dashboard</span>
+          <span class="dashboard-status-dot"></span>
+          <div>
+            <span class="dashboard-kicker">ANVESH / OPERATIONS DESK</span>
+            <strong>Live threat telemetry</strong>
+          </div>
+          <span class="dashboard-live-label">SYNCED · 09:41 IST</span>
         </div>
         <div class="action-strip-btns">
           <button class="btn btn-outline" id="telemetry-pdf-btn">Executive PDF Report</button>
@@ -72,14 +77,17 @@
         <div class="metric-card">
           <div class="metric-label">Total Artifacts Processed</div>
           <div class="metric-value blue" id="telemetry-stat-artifacts">1,486</div>
+          <div class="metric-foot"><span class="metric-trend up">+12.8%</span> vs last 15 days</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Active Mule Identifiers</div>
           <div class="metric-value" id="telemetry-stat-mules">5 Active</div>
+          <div class="metric-foot"><span class="metric-trend steady">●</span> cross-case matches</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">System Threat Risk Index</div>
           <div class="metric-value red" id="telemetry-stat-risk">88/100 (HIGH RISK)</div>
+          <div class="metric-foot"><span class="metric-trend alert">Priority review</span> required today</div>
         </div>
       </div>
 
@@ -87,10 +95,10 @@
       <div class="two-col-grid">
         
         <!-- Left: Recent Threat Detections & Extracted Mules -->
-        <div class="card-panel">
+        <div class="card-panel dashboard-panel detections-panel">
           <div class="card-panel-header">
-            <h3>Recent Threat Detections & Extracted Mules</h3>
-            <span class="badge badge-low">LIVE SYNDICATE FEED</span>
+            <div><div class="panel-kicker">SIGNAL STREAM / 04</div><h3>Recent threat detections</h3></div>
+            <span class="badge badge-low">LIVE FEED</span>
           </div>
 
           <table class="table-clean">
@@ -127,10 +135,10 @@
         </div>
 
         <!-- Right: Reported case category mix -->
-        <div class="card-panel">
+        <div class="card-panel dashboard-panel category-panel">
           <div class="card-panel-header">
-            <h3>Reported Cases by Category in past 15 days</h3>
-            <span class="badge badge-medium">PAST 15 DAYS</span>
+            <div><div class="panel-kicker">CASE MIX / 15 DAYS</div><h3>Reported cases by category</h3></div>
+            <span class="badge badge-medium">ROLLING</span>
           </div>
           <div class="case-category-chart-wrap">
             <div class="case-category-pie" id="telemetry-category-chart" role="img" aria-label="Reported cases by category in past 15 days">
@@ -897,14 +905,18 @@
         <div class="browser-extension-frame">
           
           <div class="extension-chrome-bar">
-            <span style="font-weight:800; font-size:0.75rem; color:#1E4034; border:1px solid #1E4034; border-radius:3px; padding:1px 4px;">GUARD</span>
+            <span class="extension-brand-mark">A</span>
+            <span class="extension-brand-name">ANVESH GUARD</span>
             <div class="extension-url-pill">
+              <span class="extension-lock">⌁</span>
               <span id="ext-display-url">https://quickcash-verify.in/kyc</span>
               <span id="ext-status-tag" style="color:#DC2626; font-weight:700;">PHISHING</span>
             </div>
           </div>
 
           <div class="extension-body-content">
+
+            <div class="extension-context-row"><span class="extension-context-dot"></span><span>Page protection is active</span><span class="extension-context-time">JUST NOW</span></div>
             
             <div class="extension-threat-card">
               <span class="badge badge-high" id="ext-threat-badge">DECEPTIVE SITE DETECTED</span>
@@ -924,10 +936,14 @@
               <div>- <strong>Zero HTTPS Trust:</strong> Self-signed certificate</div>
             </div>
 
+            <div class="extension-note"><strong>Why this matters</strong><span>ANVESH found signals commonly used to imitate a bank verification page.</span></div>
+
             <div style="display:flex; gap:0.5rem;">
               <button class="btn btn-sm btn-primary" style="background:#DC2626; flex:1; justify-content:center;" onclick="alert('Safe navigation: Redirected away from suspicious destination.');">Leave Site</button>
               <button class="btn btn-sm btn-outline" style="flex:1; justify-content:center;" onclick="document.querySelector('[data-tab=\'tab-investigate\']').click();">File Report</button>
             </div>
+
+            <div class="extension-footer"><span>ANVESH LOCAL ANALYSIS</span><span>DETAILS ›</span></div>
 
           </div>
 
@@ -1280,6 +1296,113 @@
               <!-- Home Indicator -->
               <div class="ios-home-indicator" style="margin:6px auto 10px;"></div>
 
+            </div>
+          </div>
+
+          <!-- SCREEN 3: Direct URL Submission Screen -->
+          <div class="ios-screen-column">
+            <div class="ios-step-badge">STEP 3 · SUBMIT LINK, URL OR WEB APP</div>
+
+            <div class="ios-phone-chassis" style="background:#F2F2F7;">
+              <div class="ios-dynamic-island">
+                <div class="ios-island-sensor"></div>
+                <div class="ios-island-camera"></div>
+              </div>
+
+              <div class="ios-status-bar" style="background:#F2F2F7;">
+                <span class="ios-status-time">9:41</span>
+                <div class="ios-status-icons"><span>5G</span><span>▮▮▮</span><span>▰</span></div>
+              </div>
+
+              <div style="height:48px; padding:0 16px; display:flex; align-items:center; border-bottom:0.5px solid #D1D1D6; background:rgba(255,255,255,0.95);">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:6px; background:#ECFDF5; border:1px solid #10B981;">
+                    <svg class="anvesh-mark anvesh-mark-pwa-header" aria-hidden="true" focusable="false"><use href="#anvesh-monogram"></use></svg>
+                  </div>
+                  <span style="font-weight:700; font-size:0.88rem; color:#111827;">ANVESH <span style="font-weight:400; color:#6B7280; font-size:0.8rem;">Fraud Guard</span></span>
+                </div>
+              </div>
+
+              <div style="flex:1; padding:22px 16px 10px; overflow-y:auto;">
+                <div style="font-size:0.68rem; font-family:var(--font-mono); font-weight:700; color:#059669; letter-spacing:0.05em; margin-bottom:8px;">SAFE LINK CHECK</div>
+                <h3 style="font-size:1.45rem; line-height:1.15; color:#111827; margin:0 0 8px;">Submit anything<br>you want checked.</h3>
+                <p style="font-size:0.76rem; line-height:1.45; color:#6B7280; margin:0 0 14px;">Share a link, URL or web application. ANVESH will inspect it before you open or sign in.</p>
+
+                <div style="display:flex; gap:7px; margin-bottom:14px;">
+                  <span style="padding:6px 9px; border-radius:999px; background:#ECFDF5; border:1px solid #A7F3D0; color:#047857; font-size:0.65rem; font-weight:700;">LINK</span>
+                  <span style="padding:6px 9px; border-radius:999px; background:#EFF6FF; border:1px solid #BFDBFE; color:#1D4ED8; font-size:0.65rem; font-weight:700;">URL</span>
+                  <span style="padding:6px 9px; border-radius:999px; background:#F5F3FF; border:1px solid #DDD6FE; color:#6D28D9; font-size:0.65rem; font-weight:700;">WEB APP</span>
+                </div>
+
+                <div style="background:#FFFFFF; border:1px solid #D1D5DB; border-radius:14px; padding:10px 12px; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+                  <div style="font-size:0.65rem; font-family:var(--font-mono); font-weight:700; color:#6B7280; margin-bottom:6px;">SUSPICIOUS URL</div>
+                  <div style="display:flex; align-items:center; gap:7px; color:#111827; font-size:0.75rem; line-height:1.35; word-break:break-all;">
+                    <span style="width:8px; height:8px; border-radius:50%; background:#F59E0B; flex:0 0 auto;"></span>
+                    https://sbi-kyc-verify-portal.xyz/login
+                  </div>
+                </div>
+
+                <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:12px; background:#059669; border-color:#059669; padding:12px 16px; border-radius:12px;">Submit for safe analysis <span style="font-size:1rem;">›</span></button>
+                <button class="btn btn-outline" style="width:100%; justify-content:center; margin-top:8px; font-size:0.78rem;">Paste from clipboard</button>
+
+                <div style="margin-top:22px; padding:12px; border-radius:12px; background:#ECFDF5; border:1px solid #A7F3D0; color:#065F46; font-size:0.7rem; line-height:1.45;">
+                  <strong>Private by design.</strong><br>Only the link signal is checked. Your message content stays on this device.
+                </div>
+              </div>
+              <div class="ios-home-indicator" style="margin:6px auto 10px;"></div>
+            </div>
+          </div>
+
+          <!-- SCREEN 4: AI Expert Guidance Screen -->
+          <div class="ios-screen-column">
+            <div class="ios-step-badge alert-step" style="color:#5B21B6; background:#F5F3FF; border-color:#DDD6FE;">STEP 4 · AI EXPLAINER · VOICE</div>
+
+            <div class="ios-phone-chassis" style="background:#F7F7FB;">
+              <div class="ios-dynamic-island">
+                <div class="ios-island-sensor"></div>
+                <div class="ios-island-camera"></div>
+              </div>
+
+              <div class="ios-status-bar" style="background:#F7F7FB;">
+                <span class="ios-status-time">9:41</span>
+                <div class="ios-status-icons"><span>5G</span><span>▮▮▮</span><span>▰</span></div>
+              </div>
+
+              <div style="height:48px; padding:0 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:0.5px solid #D1D1D6; background:rgba(255,255,255,0.95);">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:#EDE9FE; border:1px solid #A78BFA; color:#6D28D9; font-weight:800; font-size:0.75rem;">AI</div>
+                  <span style="font-weight:700; font-size:0.88rem; color:#111827;">ANVESH <span style="font-weight:400; color:#6B7280; font-size:0.8rem;">AI Explainer</span></span>
+                </div>
+                <span style="font-size:0.62rem; font-family:var(--font-mono); color:#059669; font-weight:700;">● ONLINE</span>
+              </div>
+
+              <div style="flex:1; padding:18px 14px 10px; overflow-y:auto; display:flex; flex-direction:column;">
+                <div style="font-size:0.68rem; font-family:var(--font-mono); font-weight:700; color:#7C3AED; letter-spacing:0.05em; margin-bottom:8px;">AI EXPLAINER · VOICE ASSISTANT</div>
+                <h3 style="font-size:1.2rem; line-height:1.2; color:#111827; margin:0 0 12px;">Hear what this link means.</h3>
+
+                <div style="display:flex; flex-direction:column; align-items:center; padding:10px 0 14px;">
+                  <div style="width:68px; height:68px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#7C3AED; color:#FFFFFF; font-size:1.15rem; box-shadow:0 0 0 8px #EDE9FE, 0 0 0 16px #F5F3FF;">◖)))</div>
+                  <div style="margin-top:17px; font-size:0.68rem; font-family:var(--font-mono); font-weight:700; color:#6D28D9; letter-spacing:0.08em;">● SPEAKING NOW</div>
+                  <div style="display:flex; align-items:center; gap:3px; height:18px; margin-top:7px;">
+                    <span style="width:3px; height:8px; border-radius:3px; background:#A78BFA;"></span><span style="width:3px; height:15px; border-radius:3px; background:#7C3AED;"></span><span style="width:3px; height:11px; border-radius:3px; background:#A78BFA;"></span><span style="width:3px; height:18px; border-radius:3px; background:#7C3AED;"></span><span style="width:3px; height:10px; border-radius:3px; background:#A78BFA;"></span><span style="width:3px; height:15px; border-radius:3px; background:#7C3AED;"></span><span style="width:3px; height:7px; border-radius:3px; background:#A78BFA;"></span>
+                  </div>
+                </div>
+
+                <div style="align-self:flex-start; max-width:90%; background:#FFFFFF; border:1px solid #E5E7EB; border-radius:14px 14px 14px 4px; padding:11px 12px; font-size:0.75rem; line-height:1.45; color:#374151; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+                  This link is suspicious. It uses a fake SBI KYC page, creates urgency, and may capture your banking credentials. I recommend closing it and not entering any information.
+                </div>
+
+                <div style="display:flex; flex-wrap:wrap; gap:7px; margin:14px 0;">
+                  <button class="btn btn-outline" style="font-size:0.68rem; padding:7px 9px; border-radius:999px;">Replay explanation</button>
+                  <button class="btn btn-outline" style="font-size:0.68rem; padding:7px 9px; border-radius:999px;">I already clicked</button>
+                </div>
+
+                <div style="align-self:flex-end; max-width:86%; background:#EDE9FE; border:1px solid #DDD6FE; border-radius:14px 14px 4px 14px; padding:10px 12px; font-size:0.75rem; line-height:1.4; color:#4C1D95;">What should I do now?</div>
+                <div style="align-self:flex-start; max-width:90%; margin-top:10px; background:#FFFFFF; border-left:3px solid #7C3AED; border-radius:10px; padding:10px 12px; font-size:0.72rem; line-height:1.45; color:#374151; box-shadow:0 1px 3px rgba(0,0,0,0.04);"><strong style="color:#5B21B6;">My recommendation:</strong><br>Close the page. If you shared credentials or money moved, contact your bank and call 1930 immediately.</div>
+
+                <div style="margin-top:auto; display:flex; align-items:center; gap:8px; padding:10px 12px; background:#FFFFFF; border:1px solid #D1D5DB; border-radius:999px; color:#9CA3AF; font-size:0.72rem;">Tap to ask ANVESH… <span style="margin-left:auto; color:#7C3AED; font-weight:700;">🎙</span></div>
+              </div>
+              <div class="ios-home-indicator" style="margin:6px auto 10px;"></div>
             </div>
           </div>
 
